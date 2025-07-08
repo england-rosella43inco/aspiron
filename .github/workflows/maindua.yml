@@ -1,0 +1,21 @@
+name: CI
+on: 
+  workflow_dispatch:
+ 
+jobs:
+ setup:
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v2
+        name: Setup build start on Port ${{matrix.Port}}
+      - name: Run the Server build process
+        uses: addnab/docker-run-action@v3
+        with:
+            image: ubuntu:24.04
+            run: |
+                echo ok
+                ls -al /
+                sleep 1m
+            shell: bash
